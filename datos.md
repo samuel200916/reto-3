@@ -79,3 +79,80 @@ Retorna verdadero cuando la temperatura supera el límite establecido.
 | apogeo_detectado | bool | Indica si ya se detectó el apogeo |
 | suma_temperaturas | float | Acumulador |
 | contador_datos | int | Contador de lecturas |
+
+INICIO
+
+    Inicializar variables
+
+    altitud_previa <- 0
+    altitud_maxima <- 0
+    apogeo_detectado <- FALSO
+
+    suma_temperaturas <- 0
+    contador_datos <- 0
+
+    aceleracion_maxima <- 0
+
+    continuar <- "S"
+
+    MIENTRAS continuar = "S"
+
+        Leer presion
+        Leer aceleracion
+        Leer temperatura
+
+        Calcular altitud
+
+        Determinar estado del vuelo
+
+        Evaluar alerta de temperatura
+
+        SI altitud_actual > altitud_maxima ENTONCES
+
+            altitud_maxima <- altitud_actual
+
+        FIN SI
+
+        SI altitud_actual < altitud_previa Y
+           apogeo_detectado = FALSO ENTONCES
+
+            apogeo_detectado <- VERDADERO
+
+            Mostrar "APOGEO DETECTADO"
+
+        FIN SI
+
+        Acumular temperatura
+
+        Actualizar contador
+
+        SI aceleracion > aceleracion_maxima ENTONCES
+
+            aceleracion_maxima <- aceleracion
+
+        FIN SI
+
+        Mostrar resultados
+
+        altitud_previa <- altitud_actual
+
+        SI altitud_actual <= 0 ENTONCES
+
+             Salir del ciclo
+
+        FIN SI
+
+        Leer continuar
+
+    FIN MIENTRAS
+
+    temperatura_promedio <-
+    suma_temperaturas / contador_datos
+
+    Mostrar altitud_maxima
+
+    Mostrar temperatura_promedio
+
+    Mostrar aceleracion_maxima
+
+FIN
